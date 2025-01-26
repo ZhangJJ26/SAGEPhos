@@ -1,0 +1,84 @@
+output_dir: ../scratch/aaai24_output
+
+dataset:
+  class: PhosKinSubDataset
+  path: ../data/test
+  protein_path: ../data/pdb
+  atom_feature: default
+  bond_feature: default
+  residue_feature: default
+  lazy: False
+  transform:
+    class: Compose
+    transforms:
+      - class: ProteinView
+        view: residue
+        # view: atom
+        keys: ["graph1","graph2","graph1_k"]
+      - class: TruncateProtein
+        keys: ["graph1","graph2","graph1_k"]
+        max_length: 1022
+
+task:
+  class: PhosphorylationPrediction
+  model:
+    class: FusionNetwork_two_fusion
+    fusion: "parallel"
+    sequence_model:
+      class: ESM_modified
+      path: /uac/gds/jjzhang24/jingjie/jjzhang24/scratch/protein-model-weights/esm-model-weights
+      model: ESM-2-650M
+      readout: 'site'
+    structure_model:
+      class: RGCN_modified
+      input_dim: 21
+      hidden_dims: [512, 512, 512, 512, 512, 512]
+      batch_norm: True
+      concat_hidden: False
+      short_cut: True
+      readout: 'site'
+      num_relation: 7
+
+  graph_construction_model:
+    class: GraphConstruction
+    node_layers:
+      - class: AlphaCarbonNode
+    edge_layers:
+      - class: SequentialEdge
+        max_distance: 2
+      - class: SpatialEdge
+        radius: 10.0
+        min_distance: 5
+      - class: KNNEdge
+        k: 10
+        min_distance: 5
+  num_mlp_layer: 3
+  mlp_dropout: 0.2
+  mlp_batch_norm: True
+
+optimizer:
+  class: Adam
+  lr: 1.0e-5
+  weight_decay: 0.0001
+
+scheduler:
+  class: ReduceLROnPlateau
+  factor: 0.6
+  patience: 5
+
+engine:
+  gpus: [0,1]
+  batch_size: 128
+  log_interval: 100
+  logger: wandb
+  gradient_interval: 4
+
+model_checkpoint: {{ ckpt }}
+
+sequence_model_lr_ratio: 1
+structure_model_lr_ratio: 2
+
+metric: auroc [label]
+
+train:
+  num_epoch: 100
