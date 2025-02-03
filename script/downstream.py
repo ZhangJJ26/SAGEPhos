@@ -78,5 +78,10 @@ if __name__ == "__main__":
     dataset = core.Configurable.load_config_dict(cfg.dataset)
     solver, scheduler = util.build_downstream_solver(cfg, dataset)
 
-    # train_and_validate(cfg, solver, scheduler)
-    test(cfg, solver)
+    if cfg.model_checkpoint is not None:
+        print("Loading model from checkpoint:", cfg.model_checkpoint)
+        test(cfg, solver)
+    else:
+        print("Training")
+        train_and_validate(cfg, solver, scheduler)
+        test(cfg, solver)
