@@ -2,8 +2,8 @@ output_dir: ../scratch/aaai24_output
 
 dataset:
   class: PhosKinSubDataset
-  path: ../data/test
-  protein_path: ../data/pdb
+  path: /home/student/Documents/jingjie/research/SAGEPhos/data/test
+  protein_path: /home/student/Documents/jingjie/research/SAGEPhos/data/pdb
   atom_feature: default
   bond_feature: default
   residue_feature: default
@@ -26,7 +26,7 @@ task:
     fusion: "parallel"
     sequence_model:
       class: ESM_modified
-      path: /uac/gds/jjzhang24/jingjie/jjzhang24/scratch/protein-model-weights/esm-model-weights
+      path: ../scratch/protein-model-weights/esm-model-weights
       model: ESM-2-650M
       readout: 'site'
     structure_model:
@@ -67,7 +67,7 @@ scheduler:
   patience: 5
 
 engine:
-  gpus: [0,1]
+  gpus: [0]
   batch_size: 128
   log_interval: 100
   logger: wandb

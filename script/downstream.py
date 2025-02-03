@@ -16,11 +16,9 @@ from torchdrug.utils import comm, pretty
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import util
-from gearnet import model, cdconv, gvp, dataset, task, protbert
+from gearnet import model, dataset, task
 import wandb
 
-
-os.environ["XDG_CACHE_HOME"] = "~/jingjie/jjzhang24/"
 
 def train_and_validate(cfg, solver, scheduler):
     if cfg.train.num_epoch == 0:
@@ -80,5 +78,5 @@ if __name__ == "__main__":
     dataset = core.Configurable.load_config_dict(cfg.dataset)
     solver, scheduler = util.build_downstream_solver(cfg, dataset)
 
-    train_and_validate(cfg, solver, scheduler)
+    # train_and_validate(cfg, solver, scheduler)
     test(cfg, solver)

@@ -179,7 +179,7 @@ class PhosKinSubDataset(data.ProteinDataset, Atom3DDataset):
         self.pdb_files = []
         self.protein_path = protein_path
 
-        csv_files = [os.path.join(path, "___new_%s_zj.csv" % split)
+        csv_files = [os.path.join(path, "%s.csv" % split)
                      for split in self.splits]
 
         pkl_file = os.path.join(path, self.processed_file)
@@ -231,6 +231,10 @@ class PhosKinSubDataset(data.ProteinDataset, Atom3DDataset):
                 short_seq = pdb_file_list[5]
 
                 father_path = os.path.dirname(self.protein_path)
+                if not os.path.exists(os.path.join(father_path, "sequence")):
+                    os.makedirs(os.path.join(father_path, "sequence"))
+                if not os.path.exists(os.path.join(father_path, "protein")):
+                    os.makedirs(os.path.join(father_path, "protein"))
                 kin_seq_pickle = os.path.join(father_path, "sequence", kin_id+"_seq.pkl")
                 sub_seq_pickle = os.path.join(father_path, "sequence", short_seq+"_seq.pkl")
                 sub_pickle = os.path.join(father_path, "protein", "%s_sub.pkl" % (sub_id))
