@@ -1,8 +1,24 @@
 # SAGEPHOS: SAGE BIO-COUPLED AND AUGMENTED FUSION FOR PHOSPHORYLATION SITE DETECTION
 
+![Paper Accepted](https://img.shields.io/badge/Paper-Accepted-brightgreen)
+![Python Version](https://img.shields.io/badge/Python-3.8%20%7C%203.9%20%7C%203.10-blue)
+
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Training](#training)
+  - [Testing](#testing)
+- [Contact](#contact)
+
+
+## Introduction
+
 This repository contains the open-source implementation of the paper "[SAGEPHOS: SAGE BIO-COUPLED AND AUGMENTED FUSION FOR PHOSPHORYLATION SITE DETECTION](https://openreview.net/forum?id=hLwcNSFhC2)". SAGEPhos introduces a Bio-Coupled Modal Fusion method, distilling essential kinase sequence information to refine task-oriented local substrate feature space, creating a shared semantic space that captures crucial kinase-substrate interaction patterns. Within the substrate’s intra-modality domain, it focuses on Bio-Augmented Fusion, emphasizing 2D local sequence information while selectively incorporating 3D spatial information from predicted structures to complement the sequence space.
 
 ![SAGEPhos Framework](image.png)
+
 
 ## Installation
 
