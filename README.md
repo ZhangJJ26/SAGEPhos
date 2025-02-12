@@ -1,7 +1,7 @@
 # SAGEPhos: Sage Bio-Coupled and Augmented Fusion for Phosphorylation Site Detection
 
 
-[![Paper Accepted at ICLR 2025](https://img.shields.io/badge/Paper-ICLR-2025-brightgreen)](https://arxiv.org/abs/2502.07384)
+[![Paper Accepted at ICLR 2025](https://img.shields.io/badge/Paper-ICLR%202025-brightgreen)](https://arxiv.org/abs/2502.07384)
 ![Python Version](https://img.shields.io/badge/Python-3.8-blue)
 
 This repository contains the open-source implementation of the paper "[SAGEPHOS: SAGE BIO-COUPLED AND AUGMENTED FUSION FOR PHOSPHORYLATION SITE DETECTION](https://openreview.net/forum?id=hLwcNSFhC2)". 
