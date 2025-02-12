@@ -1,8 +1,9 @@
 # SAGEPHOS: SAGE BIO-COUPLED AND AUGMENTED FUSION FOR PHOSPHORYLATION SITE DETECTION
 
-![Paper Accepted](https://img.shields.io/badge/Paper-Accepted-brightgreen)
-![Python Version](https://img.shields.io/badge/Python-3.8%20%7C%203.9%20%7C%203.10-blue)
+[![Paper Accepted at ICLR](https://img.shields.io/badge/Paper-Accepted%20at%20ICLR-brightgreen)](https://arxiv.org/abs/your-arxiv-id)
+![Python Version](https://img.shields.io/badge/Python-3.8-blue)
 
+This repository contains the open-source implementation of the paper "[SAGEPHOS: SAGE BIO-COUPLED AND AUGMENTED FUSION FOR PHOSPHORYLATION SITE DETECTION](https://openreview.net/forum?id=hLwcNSFhC2)". 
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -15,35 +16,35 @@
 
 ## Introduction
 
-This repository contains the open-source implementation of the paper "[SAGEPHOS: SAGE BIO-COUPLED AND AUGMENTED FUSION FOR PHOSPHORYLATION SITE DETECTION](https://openreview.net/forum?id=hLwcNSFhC2)". SAGEPhos introduces a Bio-Coupled Modal Fusion method, distilling essential kinase sequence information to refine task-oriented local substrate feature space, creating a shared semantic space that captures crucial kinase-substrate interaction patterns. Within the substrate’s intra-modality domain, it focuses on Bio-Augmented Fusion, emphasizing 2D local sequence information while selectively incorporating 3D spatial information from predicted structures to complement the sequence space.
+**SAGEPhos** introduces a **Bio-Coupled Modal Fusion** method, distilling essential kinase sequence information to refine task-oriented local substrate feature space. It creates a shared semantic space that captures crucial kinase-substrate interaction patterns. Within the substrate’s intra-modality domain, it focuses on **Bio-Augmented Fusion**, emphasizing 2D local sequence information while selectively incorporating 3D spatial information from predicted structures to complement the sequence space.
+
+[Read the paper here.](https://arxiv.org/abs/your-arxiv-id)
 
 ![SAGEPhos Framework](image.png)
 
 
+
 ## Installation
 
-1. Clone the repository:
-
+1. **Clone the repository:**
    ```sh
    git clone https://github.com/ZhangJJ26/SAGEPhos.git
    cd SAGEPhos
    ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 
-   (1) You can directly use the `environment.yml` file to set up the environment:
-
+   **Option 1:** Use the `environment.yml` file to set up the environment:
    ```bash
    conda env create -f environment.yml
    conda activate SAGEPhos
    ```
 
-   (2) Alternatively, you can manually install the environment using the following commands:
-
+   **Option 2:** Manually install the environment:
    ```bash
    conda create -n SAGEPhos python=3.8
    conda activate SAGEPhos
-   conda install torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia # Here, CUDA 12.1 is used as an example. Please install the corresponding version of PyTorch based on your specific CUDA version.
+   conda install torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia  # Use the appropriate CUDA version for your system.
    conda install torchdrug -c milagraph -c conda-forge -c pytorch -c pyg
    conda install easydict pyyaml -c conda-forge
    conda install scipy joblib wandb
@@ -51,38 +52,50 @@ This repository contains the open-source implementation of the paper "[SAGEPHOS:
    pip install ninja rdkit-pypi scikit-learn h5py atom3d
    ```
 
-3. Download the pretrained model:
+3. **Download the pretrained model:**
+   - Download the pretrained model from the [releases page](https://github.com/ZhangJJ26/SAGEPhos/releases/tag/v1.0.0).
+   - Extract and place it in the `checkpoint` directory:
+     ```sh
+     mkdir checkpoint
+     tar -xzvf checkpoint.tar.gz -C checkpoint/
+     ```
 
-   We provide a pretrained model for SAGEPhos. [Download it here](https://github.com/ZhangJJ26/SAGEPhos/releases/tag/v1.0.0) and place it in the `checkpoint` directory.
-
-   ```sh
-   mkdir checkpoint
-   # After downloading
-   tar -zcvf checkpoint.tar.gz
-   # Move checkpoint.pth to the checkpoint directory.
-   ```
 
 ## Usage
 
 ### Training
-
-By default, we use 2 NVIDIA A40 GPUs for training. You can adjust the batch size according to your GPU memory.
+By default, we use 2 NVIDIA A40 GPUs for training. Adjust the batch size according to your GPU memory.
 
 ```sh
 python script/downstream.py -c config/phos/esm_gearnet_parallel.yaml --ckpt null
 ```
 
-- `--ckpt`: Specify the path to the model checkpoint. For training, `ckpt` can be set to `null`.
+- `--ckpt`: Specify the path to the model checkpoint. For training, set this to `null`.
 
 ### Testing
-
-For testing, you can run the following command:
+To test the model, run the following command:
 
 ```sh
-python script/downstream.py -c config/phos/esm_gearnet_parallel.yaml --ckpt ${checkpoint_path}
+python script/downstream.py -c config/phos/esm_gearnet_parallel.yaml --ckpt checkpoint/checkpoint.pth
 ```
 
-- `--ckpt`: Specify the path to the model checkpoint (default is `checkpoint/checkpoint.pth`).
+- `--ckpt`: Path to the model checkpoint (default is `checkpoint/checkpoint.pth`).
+
+
+## Citation
+If you use SAGEPhos in your research, please cite our paper:
+
+```bibtex
+@misc{zhang2025sagephossagebiocoupledaugmented,
+      title={SAGEPhos: Sage Bio-Coupled and Augmented Fusion for Phosphorylation Site Detection}, 
+      author={Jingjie Zhang and Hanqun Cao and Zijun Gao and Xiaorui Wang and Chunbin Gu},
+      year={2025},
+      eprint={2502.07384},
+      archivePrefix={arXiv},
+      primaryClass={cs.CE},
+      url={https://arxiv.org/abs/2502.07384}, 
+}
+```
 
 ## Contact
 
