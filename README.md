@@ -11,6 +11,7 @@ This repository contains the open-source implementation of the paper "[SAGEPHOS:
 - [Usage](#usage)
   - [Training](#training)
   - [Testing](#testing)
+- [Citation](#citation)
 - [Contact](#contact)
 
 
