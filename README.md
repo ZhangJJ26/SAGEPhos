@@ -88,14 +88,11 @@ python script/downstream.py -c config/phos/esm_gearnet_parallel.yaml --ckpt chec
 If you use SAGEPhos in your research, please cite our paper:
 
 ```bibtex
-@misc{zhang2025sagephossagebiocoupledaugmented,
-      title={SAGEPhos: Sage Bio-Coupled and Augmented Fusion for Phosphorylation Site Detection}, 
-      author={Jingjie Zhang and Hanqun Cao and Zijun Gao and Xiaorui Wang and Chunbin Gu},
-      year={2025},
-      eprint={2502.07384},
-      archivePrefix={arXiv},
-      primaryClass={cs.CE},
-      url={https://arxiv.org/abs/2502.07384}, 
+@article{zhang2025sagephos,
+  title={SAGEPhos: Sage Bio-Coupled and Augmented Fusion for Phosphorylation Site Detection},
+  author={Zhang, Jingjie and Cao, Hanqun and Gao, Zijun and Wang, Xiaorui and Gu, Chunbin},
+  journal={arXiv preprint arXiv:2502.07384},
+  year={2025}
 }
 ```
 
