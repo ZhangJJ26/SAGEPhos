@@ -73,6 +73,7 @@ python script/downstream.py -c config/phos/esm_gearnet_parallel.yaml --ckpt null
 ```
 
 - `--ckpt`: Specify the path to the model checkpoint. For training, set this to `null`.
+- We have uploaded our SAGEPhos dataset on [releases page](https://github.com/ZhangJJ26/SAGEPhos/releases/tag/v1.0.0).
 
 ### Testing
 To test the model, run the following command:
